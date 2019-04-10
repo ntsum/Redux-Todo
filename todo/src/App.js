@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { connect } from "react-redux";
+
+import Todo from "./component/todo";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Todo List</h1>
-        <form>
-          <input 
-          placeholder = "add new todo"/>
-        </form>
-        <button>Add</button>
-        <button>Clear</button>
+        <h1>{this.props.toDoList}</h1>
+        <Todo />
       </div>
     );
   }
 }
 
-export default App;
+function mapStatetoProps(state) {
+  return {
+    toDoList: state.title
+  };
+}
+
+export default connect(
+  mapStatetoProps,
+  {}
+)(App);
